@@ -5,6 +5,9 @@
  */
 package ejerciciofer;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author juanj
@@ -12,17 +15,20 @@ package ejerciciofer;
 public class Empresa {
       String razonSocial;
       int CUIT;
-      Empleado []empleados;
+      ArrayList <Empleado> listaEmpleado;
 
     public Empresa() {
+        listaEmpleado= new ArrayList<Empleado>();
     }
-      
-    public Empresa(String razonSocial, int CUIT, Empleado[] empleados) {
-        this.razonSocial = razonSocial;
-        this.CUIT = CUIT;
-        this.empleados = empleados;
+    
+    public ArrayList<Empleado> getListaEmpleado() {
+        return listaEmpleado;
     }
 
+    public void setListaEmpleado(ArrayList<Empleado> listaEmpleado) {
+        this.listaEmpleado = listaEmpleado;
+    }
+      
     public String getRazonSocial() {
         return razonSocial;
     }
@@ -37,13 +43,21 @@ public class Empresa {
 
     public void setCUIT(int CUIT) {
         this.CUIT = CUIT;
+    }    
+    
+    public void agregaEmpleado(Empleado emp1){
+        listaEmpleado.add(emp1);
     }
+    public void mostrarEmp(){
 
-    public Empleado[] getEmpleados() {
-        return empleados;
-    }
+     int i=0;
+     
+     for (i=0; i<this.listaEmpleado.size();i++){
+         JOptionPane.showMessageDialog(null, this.listaEmpleado.get(i).getNombre()+" "+this.listaEmpleado.get(i).getApellido());
+         
+         
+         
+     }
 
-    public void setEmpleados(Empleado[] empleados) {
-        this.empleados = empleados;
-    }
+}
 }

@@ -56,6 +56,7 @@ public class principal extends javax.swing.JFrame {
         jTFRazon = new javax.swing.JTextField();
         jTFCUIT = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -194,6 +195,13 @@ public class principal extends javax.swing.JFrame {
 
         jLabel13.setText("CUIT");
 
+        jButton1.setText("Mostrar Empleados");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -213,7 +221,9 @@ public class principal extends javax.swing.JFrame {
                 .addContainerGap(32, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BtGuarda2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BtGuarda2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(61, 61, 61))
         );
         jPanel3Layout.setVerticalGroup(
@@ -229,6 +239,8 @@ public class principal extends javax.swing.JFrame {
                     .addComponent(jLabel13))
                 .addGap(18, 18, 18)
                 .addComponent(BtGuarda2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -305,21 +317,24 @@ public class principal extends javax.swing.JFrame {
     private void BtGuardaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtGuardaActionPerformed
         // TODO add your handling code here:
         e1 = new Empleado(Integer.parseInt(jTFDni.getText()), jTFnombre.getText(), jTFApe.getText(), jComboBoxCat.getSelectedItem().toString(), Double.parseDouble(jTFSueldo.getText()));
-        for(int i=0; i<5; i++) {
-            if (empresas[i].razonSocial == jComboBoxEmpresa.getSelectedItem()){
-                e1.setEmp(emp);
-                System.out.println(emp.getCUIT());
+        for(int i=0; i<empresas.size(); i++){
+            if(empresas.get(i).razonSocial == jComboBoxEmpresa.getSelectedItem().toString()){
+                e1.setTrabaja(empresas.get(i));
+                JOptionPane.showMessageDialog(rootPane, "trabaja en "+e1.getTrabaja().getRazonSocial());
+                
+                empresas.get(i).agregaEmpleado(e1);
+                JOptionPane.showMessageDialog(rootPane, "añadido a la empresas "+empresas.get(i).getRazonSocial());
+                
             }
         }
-        
-        listaemp[j] = this.e1; 
-        j++;
-        JOptionPane.showMessageDialog(rootPane, "Se guardo el empleado: " + e1.nombre +" "+ e1.apellido +" "+ e1.dni);
+        if(!listaEmp.contains(e1)) listaEmp.add(e1);
+       
+      
     }//GEN-LAST:event_BtGuardaActionPerformed
 
     private void jMenuEmpmaySueldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEmpmaySueldoActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane, "El empleado que mas gana es: " + e1.masGana(listaemp));
+       // JOptionPane.showMessageDialog(rootPane, "El empleado que mas gana es: " + e1.masGana(listaemp));
     }//GEN-LAST:event_jMenuEmpmaySueldoActionPerformed
 
     private void jTFRazonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFRazonActionPerformed
@@ -331,11 +346,25 @@ public class principal extends javax.swing.JFrame {
         emp = new Empresa();
         emp.setRazonSocial(jTFRazon.getText()); 
         emp.setCUIT(Integer.parseInt(jTFCUIT.getText()));
-        empresas[k] = emp; k++;
-        jComboBoxEmpresa.addItem(emp.getRazonSocial());
+        //emp.setListaEmpleado(null);
+         if(!empresas.contains(emp)){
+             empresas.add(emp);
+             System.out.println("agregado!");
+             jComboBoxEmpresa.addItem(emp.getRazonSocial());
+         }
         BtGuarda.setEnabled(true);  
     }//GEN-LAST:event_BtGuarda2ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        // TODO add your handling code here:
+    for(int i=0; i<empresas.size(); i++){
+        if(empresas.get(i).razonSocial == jComboBoxEmpresa.getSelectedItem().toString()){
+            empresas.get(i).mostrarEmp();
+        }
+    }   
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -373,13 +402,11 @@ public class principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtGuarda;
-    private javax.swing.JButton BtGuarda1;
     private javax.swing.JButton BtGuarda2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBoxCat;
-    private javax.swing.JComboBox<String> jComboBoxCat1;
     private javax.swing.JComboBox<String> jComboBoxEmpresa;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -387,10 +414,6 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
@@ -399,17 +422,12 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuListado;
     private javax.swing.JMenuItem jMenuPromedio;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTFApe;
-    private javax.swing.JTextField jTFApe1;
     private javax.swing.JTextField jTFCUIT;
     private javax.swing.JTextField jTFDni;
-    private javax.swing.JTextField jTFDni1;
     private javax.swing.JTextField jTFRazon;
     private javax.swing.JTextField jTFSueldo;
-    private javax.swing.JTextField jTFSueldo1;
     private javax.swing.JTextField jTFnombre;
-    private javax.swing.JTextField jTFnombre1;
     // End of variables declaration//GEN-END:variables
 }

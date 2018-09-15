@@ -3,25 +3,42 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ejemplofer;
+package ejerciciofer;
 
 /**
  *
  * @author cris
  */
 public class Empleado {
+    int documento;
     String nombre;
     String apellido;
-    String documento;
     String categoria;
-    Double sueldo;
+    double sueldo;
+    Empresa trabaja;
 
-    public Empleado(String nombre, String apellido, String documento, String categoria, Double sueldo) {
+    public Empresa getTrabaja() {
+        return trabaja;
+    }
+
+    public void setTrabaja(Empresa trabaja) {
+        this.trabaja = trabaja;
+    }
+
+    public Empleado(int documento, String nombre, String apellido, String categoria, double sueldo) {
+        this.documento = documento;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.documento = documento;
         this.categoria = categoria;
         this.sueldo = sueldo;
+    }
+
+    public int getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(int documento) {
+        this.documento = documento;
     }
 
     public String getNombre() {
@@ -40,14 +57,6 @@ public class Empleado {
         this.apellido = apellido;
     }
 
-    public String getDocumento() {
-        return documento;
-    }
-
-    public void setDocumento(String documento) {
-        this.documento = documento;
-    }
-
     public String getCategoria() {
         return categoria;
     }
@@ -56,13 +65,17 @@ public class Empleado {
         this.categoria = categoria;
     }
 
-    public Double getSueldo() {
+    public double getSueldo() {
         return sueldo;
     }
 
-    public void setSueldo(Double sueldo) {
+    public void setSueldo(double sueldo) {
         this.sueldo = sueldo;
     }
+
+    
+
+    
     
     
             
