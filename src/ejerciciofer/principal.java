@@ -24,7 +24,7 @@ public class principal extends javax.swing.JFrame {
     public principal() {
         initComponents();
         BtGuarda.setEnabled(false); 
-        
+        jButton1.setEnabled(false);   
     }
 
     /**
@@ -343,6 +343,7 @@ public class principal extends javax.swing.JFrame {
 
     private void BtGuarda2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtGuarda2ActionPerformed
         // TODO add your handling code here:
+       
         emp = new Empresa();
         emp.setRazonSocial(jTFRazon.getText()); 
         emp.setCUIT(Integer.parseInt(jTFCUIT.getText()));
@@ -351,6 +352,7 @@ public class principal extends javax.swing.JFrame {
              empresas.add(emp);
              System.out.println("agregado!");
              jComboBoxEmpresa.addItem(emp.getRazonSocial());
+             jButton1.setEnabled(true);
          }
         BtGuarda.setEnabled(true);  
     }//GEN-LAST:event_BtGuarda2ActionPerformed

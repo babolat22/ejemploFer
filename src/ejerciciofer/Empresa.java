@@ -52,9 +52,16 @@ public class Empresa {
 
      int i=0;
      
+     if (this.listaEmpleado.size()==0)
+     {
+         JOptionPane.showMessageDialog(null, "Esta empresa no tiene empleados ");
+     }
+         
+         
+     else {
      for (i=0; i<this.listaEmpleado.size();i++){
          JOptionPane.showMessageDialog(null, this.listaEmpleado.get(i).getNombre()+" "+this.listaEmpleado.get(i).getApellido());
-         
+          } 
          
          
      }
