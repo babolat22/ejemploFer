@@ -5,18 +5,19 @@
  */
 package ejerciciofer;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
- *
+
  * @author juanj
  */
 public class principal extends javax.swing.JFrame {
         public Empleado e1 = null;
-        public Empleado[] listaemp = new Empleado[10];
+        public ArrayList<Empleado> listaEmp = new ArrayList<Empleado>();
         public int k=0,j=0;
         public Empresa emp = null;
-        Empresa[] empresas= new Empresa[5];
+        public ArrayList<Empresa> empresas = new ArrayList<Empresa>();
     /**
      * Creates new form principal
      */
